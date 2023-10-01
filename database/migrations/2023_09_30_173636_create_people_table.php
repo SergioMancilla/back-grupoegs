@@ -22,8 +22,8 @@ return new class extends Migration
             $table->unsignedBigInteger('born_city');
             $table->string('email')->unique();
             $table->string('password');
-            $table->boolean('eliminated')->default(false);
             $table->timestamps();
+            $table->softDeletes();
 
             // Foreign keys
             $table->foreign('document_type')->references('id')->on('document_types');
