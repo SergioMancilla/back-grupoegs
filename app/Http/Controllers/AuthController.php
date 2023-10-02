@@ -16,10 +16,14 @@ class AuthController extends Controller
     }
 
     public function login(Request $request) {
-        $request->validate([
+        if (!$request->validate([
             'user' => 'required',
             'password' => 'required',
-        ]);
+        ])) {
+            return response()->json(['message' => 'Incorrect data'], 404); 
+        };
+
+
 
         $person = Person::query()
             ->where('email', $request->user)
